@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Offer;
 use App\Models\Product;
+use App\Models\Contact;
+
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -66,4 +69,16 @@ public function products()
     public function privacy() {
         return view('privacy');
     }
+public function submitContact(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email',
+        'message' => 'required|string',
+    ]);
+
+    Contact::create($request->only('name', 'email', 'message'));
+
+    return back()->with('success', 'تم إرسال رسالتك وتخزينها بنجاح!');
+}
 }

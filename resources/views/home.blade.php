@@ -1,3 +1,4 @@
+@extends('layouts.app')
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -27,7 +28,6 @@
   </style>
 </head>
 <body>
-
 <!-- ✅ GTM noscript -->
 <noscript>
   <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJCV4MZ4"
