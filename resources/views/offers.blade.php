@@ -4,17 +4,20 @@
     <div class="container">
         <h1>عروضنا</h1>
         <div class="row">
-            @foreach ($offers as $offer)
-                <div class="col-md-4">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $offer->title }}</h5>
-                            <p class="card-text">{{ $offer->description }}</p>
-                            @if ($offer->discount)
-                                <p class="card-text"><strong>خصم: </strong>{{ $offer->discount }}%</p>
-                            @endif
-                        </div>
-                    </div>
+            @foreach($offers as $offer)
+                <div class="offer">
+                    <h3>{{ $offer->title }}</h3>
+                    <p>{{ Str::limit($offer->description, 100) }}</p>
+                    <p><strong>{{ $offer->price }} جنيه</strong></p>
+                    
+                    <!-- زر عرض التفاصيل -->
+                    <a href="{{ route('offer.details', $offer->id) }}" class="btn btn-primary">عرض التفاصيل</a>
+
+                    <!-- زر أضف إلى السلة (كـ POST) -->
+                    <form action="{{ route('cart.add', ['offerId' => $offer->id]) }}" method="POST" style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-success">🛒 أضف إلى السلة</button>
+                    </form>
                 </div>
             @endforeach
         </div>

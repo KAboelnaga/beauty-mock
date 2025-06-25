@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Offer;
 use App\Models\Product;
 use App\Models\Contact;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 
@@ -22,14 +26,32 @@ class SiteController extends Controller
         return view('register');
     }
 
+    public function handleRegister(Request $request)
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|string|min:6|confirmed',
+    ]);
+
+    User::create([
+        'name' => $validated['name'],
+        'email' => $validated['email'],
+        'password' => Hash::make($validated['password']),
+    ]);
+
+    return redirect()->route('login')->with('success', 'تم إنشاء الحساب بنجاح! يمكنك تسجيل الدخول الآن.');
+}
+
     public function salon($id) {
         return view('salon', compact('id'));
     }
 
-    public function offer($id) {
-        return view('offer', compact('id'));
-    }
-
+    public function offer($id)
+{
+    $offer = Offer::findOrFail($id);
+    return view('offer', compact('offer'));
+}
     public function offers()
 {
     $offers = Offer::all();
@@ -80,5 +102,16 @@ public function submitContact(Request $request)
     Contact::create($request->only('name', 'email', 'message'));
 
     return back()->with('success', 'تم إرسال رسالتك وتخزينها بنجاح!');
+}
+public function loginSubmit(Request $request)
+{
+    $credentials = $request->only('email', 'password');
+
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+        return redirect()->route('home');
+    }
+
+    return back()->with('error', 'البريد الإلكتروني أو كلمة المرور غير صحيحة');
 }
 }
