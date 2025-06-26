@@ -21,7 +21,7 @@
   <!-- ✅ Hero -->
   <div class="section">
     <h1>مرحبًا بك في Beauty Booking</h1>
-    <button class="btn" data-gtm-event="click_book" data-gtm-label="hero_button">احجز الآن</button>
+    <button class="btn" data-gtm-event="click_button" data-gtm-label="hero_button">احجز الآن</button>
   </div>
 
   <!-- ✅ Offers -->
@@ -45,6 +45,27 @@
     <div class="card" data-gtm-event="click_salon" data-gtm-label="salon_2">صالون: صالون النجمات - الإسكندرية</div>
   </div>
 </div>
+<div class="section">
+    <h2>صالونات مميزة</h2>
+    <div class="card" data-gtm-event="click_salon" data-gtm-label="salon_1">صالون: لمسة الجمال - القاهرة</div>
+    <div class="card" data-gtm-event="click_salon" data-gtm-label="salon_2">صالون: صالون النجمات - الإسكندرية</div>
+  </div>
+</div>
+
+<div class="section">
+    <h2>صالونات مميزة</h2>
+    <div class="card" data-gtm-event="click_salon" data-gtm-label="salon_1">صالون: لمسة الجمال - القاهرة</div>
+    <div class="card" data-gtm-event="click_salon" data-gtm-label="salon_2">صالون: صالون النجمات - الإسكندرية</div>
+  </div>
+</div>
+
+<div class="section">
+    <h2>صالونات مميزة</h2>
+    <div class="card" data-gtm-event="click_salon" data-gtm-label="salon_1">صالون: لمسة الجمال - القاهرة</div>
+    <div class="card" data-gtm-event="click_salon" data-gtm-label="salon_2">صالون: صالون النجمات - الإسكندرية</div>
+  </div>
+</div>
+
 
 <footer>
   © 2025 Beauty Booking. جميع الحقوق محفوظة.

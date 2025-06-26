@@ -22,7 +22,7 @@
             <label for="password">كلمة المرور</label>
             <input type="password" name="password" id="password" class="form-control" placeholder="********" required>
         </div>
-        <button type="submit" class="btn btn-primary w-100">دخول</button>
+        <button type="submit" data-gtm-action="login" data-gtm-category="login" data-gtm-label="login" data-gtm-event="click_page" class="btn btn-primary w-100">دخول</button>
     </form>
 </div>
 @endsection

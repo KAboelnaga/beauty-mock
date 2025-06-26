@@ -1,21 +1,33 @@
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-  const clickableElements = document.querySelectorAll('[data-gtm-event]');
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-gtm-event]').forEach(el => {
+    el.addEventListener('click', async function (e) {
+      const isLink = el.tagName.toLowerCase() === 'a' && el.href;
 
-  clickableElements.forEach(el => {
-    el.addEventListener('click', function () {
-      if (typeof window.dataLayer === 'undefined') {
-        console.error('❌ dataLayer is not defined');
-        return;
+      if (isLink) {
+        e.preventDefault(); // ❗ منع التنقل المؤقت لو <a>
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: el.dataset.gtmEvent,
+          label: el.dataset.gtmLabel || '',
+          category: 'interaction'
+        });
+
+        await new Promise(resolve => setTimeout(resolve, 600)); // وقت آمن لـ GTM
+
+        window.location.href = el.href; // نرجّع التنقل يدويًا
+      } else {
+        // للعناصر اللي مش <a> (زي buttons أو divs)
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: el.dataset.gtmEvent,
+          label: el.dataset.gtmLabel || '',
+          category: 'interaction'
+        });
       }
 
-      window.dataLayer.push({
-        event: el.dataset.gtmEvent,
-        label: el.dataset.gtmLabel || '',
-        category: 'user_click'
-      });
-
-      console.log('✅ Tracked Click:', el.dataset.gtmEvent, el.dataset.gtmLabel);
+      console.log('Tracked:', el.dataset.gtmEvent, el.dataset.gtmLabel);
     });
   });
 });

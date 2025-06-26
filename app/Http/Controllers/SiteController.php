@@ -109,9 +109,10 @@ public function loginSubmit(Request $request)
 
     if (Auth::attempt($credentials)) {
         $request->session()->regenerate();
+        session()->flash('login_status', 'success');
         return redirect()->route('home');
     }
-
+    session()->flash('login_status', 'failed');
     return back()->with('error', 'البريد الإلكتروني أو كلمة المرور غير صحيحة');
 }
 }

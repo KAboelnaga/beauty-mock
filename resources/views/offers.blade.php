@@ -11,7 +11,7 @@
                     <p><strong>{{ $offer->price }} جنيه</strong></p>
                     
                     <!-- زر عرض التفاصيل -->
-                    <a href="{{ route('offer.details', $offer->id) }}" class="btn btn-primary">عرض التفاصيل</a>
+                    <a href="{{ route('offer.details', $offer->id) }}" data-gtm-event="add_to_cart" data-gtm-label="{{ $offer->title }}" class="btn btn-primary">عرض التفاصيل</a>
 
                     <!-- زر أضف إلى السلة (كـ POST) -->
                     <form action="{{ route('cart.add', ['offerId' => $offer->id]) }}" method="POST" style="display:inline;">

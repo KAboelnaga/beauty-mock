@@ -1,8 +1,9 @@
 <script>
   window.dataLayer = window.dataLayer || [];
+  
   window.dataLayer.push({
     event: 'page_view',
-    user_status: "{{ auth()->check() ? 'logged_in' : 'guest' }}",
+    user_status: "{{ auth()->check() ? 'logged_in: user_id: ' . auth()->user()->id : 'guest' }}",
     page: "{{ Request::path() }}",
     page_type: "{{ Route::currentRouteName() ?? 'unknown' }}"
   });

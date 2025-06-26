@@ -28,7 +28,7 @@
     </form>
 
     <div class="mt-3">
-        <a href="{{ route('login') }}">لديك حساب بالفعل؟ سجل الدخول</a>
+        <a href="{{ route('login') }} data-gtm-event="click_page" data-gtm-label="try_register">لديك حساب بالفعل؟ سجل الدخول</a>
     </div>
 </div>
 @endsection
